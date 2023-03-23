@@ -42,6 +42,7 @@ h1,p {
     background-color: rgb(92, 92, 112);
     height: 600px;
     width: 360px;
+    box-shadow: 3px 3px 8px 3px rgba(0,0,0,0.49);
 }
 #upper {
     font-size: 26px;
@@ -54,31 +55,24 @@ h1,p {
     border: 1px solid black;
     margin-left: auto;
     margin-right: auto;
-    align-items: center;
+    
     vertical-align: middle;
-    background-color: var(--lighterColor);
+    background-color: var(--lightColor);
     width: 300px;
     height: 100px;
-    vertical-align: middle;
+    justify-items: center;
     text-align: right;
     border-radius: 5px;
 }
 
-
 #display {
     font-size: 40px;
-    background-color: antiquewhite;
-    /* height: 100px; */
-    margin: 0;
-    vertical-align: middle;
+    background-color: var(--lightColor);
+    margin: 30px 10px 50px 10px;
     letter-spacing: 2px;
     font-weight: 200;
-   
+    vertical-align: middle;
 }
-h4 {
-   
-}
-
 
 #lower {
     margin-left: auto;
@@ -86,18 +80,15 @@ h4 {
     margin-top: 30px;
     margin-bottom: 30px;
     text-align: center;
-  
     vertical-align: middle;
-    height: 500px;
-    
+    height: 500px;    
 }
 
 #btnContainer {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content:center;
-    
+    justify-content:center;   
 }
 
 button {
@@ -107,12 +98,17 @@ button {
     margin: 2px;
     border: none;
     border-radius: 7px;
-    box-shadow: 0 0 0 0  ;
+    box-shadow: 3px 3px 5px 3px rgba(0,0,0,0.29);
 }
 #btnEq {
     width: 145px;
 }
-
+.funcBtn {
+    background-color: var(--darkColor);
+}
+.operatorBtn {
+    background-color: var(--darkerColor);
+}
 
 
 
