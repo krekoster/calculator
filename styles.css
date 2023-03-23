@@ -63,21 +63,22 @@ h1,p {
     text-align: right;
     border-radius: 5px;
 }
-h4 {
+
+
+#display {
+    font-size: 40px;
+    background-color: antiquewhite;
+    /* height: 100px; */
+    margin: 0;
+    vertical-align: middle;
     letter-spacing: 2px;
     font-weight: 200;
+   
+}
+h4 {
+   
 }
 
-#displayPrevious {
-    background-color: antiquewhite;
-    height: 50px;
-    margin: 0;
-}
-#displayCurrent {
-    background-color: bisque;
-    height: 50px;
-    margin: 0;
-}
 
 #lower {
     margin-left: auto;
