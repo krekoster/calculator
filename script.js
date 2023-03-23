@@ -1,6 +1,6 @@
 
 const numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-const operators = ["+", "-", "*", "/", "inv"];
+const operators = ["+", "-", "*", "/"];
 const functions = ["erase", "clear", "equals"];
 let operator = "";
 let operand1 = 0;
@@ -12,8 +12,6 @@ let operatorCounter = 0;
 let result = 0;
 const inputBtn = document.querySelectorAll("button");
 const display = document.getElementById("display");
-
-inputBtn.forEach(inputListen);
 
 function inputListen(item) {
     item.addEventListener("click", assignValue);
@@ -35,6 +33,28 @@ function inputProcessing() {
         currentNumber = inputBuffer.join("");
         showCurrent(currentNumber);
     }
+    else if (pressedBtn === "inv" )  {
+        if (operatorCounter === 0) {
+            operator = pressedBtn;
+            operand1 = Number(currentNumber);
+            operate(operator, operand1);
+            showCurrent(result);
+            operand1 = Number(result);
+            currentNumber = result;
+            inputBuffer = [];
+        }
+        else  {
+            operator = pressedBtn;
+            operand1 = Number(currentNumber);
+            operate(operator, operand1);
+            showCurrent(result);
+            operand1 = result;
+            currentNumber = result;
+            inputBuffer = [];
+            operatorCounter = 0;
+        }
+        
+    }
     else if (operators.includes(pressedBtn) && (operatorCounter === 0)) {
         operatorCounter++;
         operator = pressedBtn;
@@ -43,11 +63,12 @@ function inputProcessing() {
         inputBuffer = [];
     }
     else if (operators.includes(pressedBtn) && (operatorCounter !== 0)) {
+        if (operator == "inv") { operator = pressedBtn}
         operand2 = Number(currentNumber);
         operate(operator, operand1, operand2);
         showCurrent(result);
         operator = pressedBtn;
-        operand1 = result;
+        operand1 = result * 1;
         currentNumber = "";
         inputBuffer = [];
     }
@@ -60,14 +81,18 @@ function inputProcessing() {
         location.reload();
     }
     else if (pressedBtn === "=") {
-        operand2 = Number(currentNumber);
-        operate(operator, operand1, operand2);
-        showCurrent(result);
-        operatorCounter = 1;
-        operand1 = result;
-        operand2 = 0;
-        operator = "";
-        inputBuffer = [];
+        if (operatorCounter === 0) {
+            showCurrent(currentNumber);
+        }
+        else  {
+            operand2 = Number(currentNumber);
+            operate(operator, operand1, operand2);
+            showCurrent(result);
+            operand1 = result;
+            operand2 = 0;
+            operator = "";
+            inputBuffer = [];
+        }
     }
 }
 //--------------------display processing
@@ -87,13 +112,14 @@ function multiply(a, b) {
 function divide(a, b) {
     if (b == 0) {
         alert("Dividing with zero is not possible!");
+        location.reload();
         return;
     }
     else {
         return a / b;
     }
 }
-function inverse(a) {
+function inverse( a) {
     return 1 / a;
 }
 //-----------------------operating functions
@@ -108,7 +134,7 @@ function operate(operator, a, b) {
             return result;
             break;
         case "*":
-            result = multiply(a, b);
+            result = multiply(a, b).toFixed(4);
             return result;
             break;
         case "/":
@@ -116,11 +142,14 @@ function operate(operator, a, b) {
             return result;
             break;
         case "inv":
-            result = inverse(a).toFixed(4);
+            result = inverse( a).toFixed(4);
             return result;
             break;
     }
+    
 }
+
+inputBtn.forEach(inputListen);
 
 
 
